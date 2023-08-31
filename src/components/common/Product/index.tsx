@@ -8,40 +8,32 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-import { useSelector, useDispatch } from "react-redux";
-import { ProductState } from "@/types/product.type";
-import {
-  addCart, 
- 
-} from "@/features/products/productsSlice";
+import { useDispatch } from "react-redux";
+
+import { addCart } from "@/features/products/productsSlice";
 interface ProductPageProps {
   item: Product;
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({ item }) => {
-    const dispatch = useDispatch<any>();
-  const { userId, carts } = useSelector((state: ProductState) => state.product);
- 
-  const findCartItem = false;
+  const dispatch = useDispatch<any>();
 
-
-
-   const addToCart = () => {
-     const id = item?.id;
-     const name = item?.title;
-     const price = item.price.toFixed(2);
-     const images = item.image;
-     dispatch(
-       addCart({
-         id,
-         name,
-         quantity: 0,
-         //@ts-ignore
-         price: price,
-         images
-       })
-     );
-   };
+  const addToCart = () => {
+    const id = item?.id;
+    const name = item?.title;
+    const price = item.price.toFixed(2);
+    const images = item.image;
+    dispatch(
+      addCart({
+        id,
+        name,
+        quantity: 0,
+        //@ts-ignore
+        price: price,
+        images
+      })
+    );
+  };
   return (
     <div key={`${item.id}-item`} className={styles.card} title={item.title}>
       <div className={styles.cardLink}>
@@ -95,19 +87,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ item }) => {
             </div>
           </div>
           <div className={styles.addToCart}>
-            <button
-              className={
-                !findCartItem ? styles.addToCartButton : styles.removeButton
-              }
-              onClick={addToCart}>
+            <button className={styles.addToCartButton} onClick={addToCart}>
               <ShoppingCartIcon
                 className={styles.shoppingCartIcon}
                 aria-hidden="true"
               />
               <div className="flex flex-col self-center">
-                <span className={styles.buttonText}>
-                  {findCartItem ? "Remove from cart" : "Add to Cart"}
-                </span>
+                <span className={styles.buttonText}>Add to Cart</span>
               </div>
             </button>
           </div>

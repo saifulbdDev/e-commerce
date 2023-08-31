@@ -43,7 +43,7 @@ const Cart: React.FC = () => {
                 <div
                   key={item.id}
                   className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-                  <Link href={`/products/${item.id}`}>
+                  <Link href={`/product/${item.id}`}>
                     <Image
                       src={item?.images}
                       alt={item.name}
@@ -58,7 +58,7 @@ const Cart: React.FC = () => {
 
                   <div className="sm:ml-4 sm:flex sm:w-full items-center sm:justify-between">
                     <div className="mt-5 sm:mt-0">
-                      <Link href={`/products/${item.id}`}>
+                      <Link href={`/product/${item.id}`}>
                         <h3 className="text-lg font-bold text-gray-900">
                           {item.name}
                         </h3>
@@ -80,7 +80,7 @@ const Cart: React.FC = () => {
                           type="text"
                           value={item?.quantity}
                           className="w-12 text-center bg-white-100 text-stone-950 outline-none"
-                          onChange={(e: any) => setCount(e.target.value)}
+                         
                         />
                         <button
                           type="button"
@@ -109,7 +109,7 @@ const Cart: React.FC = () => {
               </div>
               <div className="flex justify-between">
                 <p className="text-gray-700">Shipping</p>
-                <p className="text-gray-700">$4.99</p>
+                <p className="text-gray-700">$0.00</p>
               </div>
               <hr className="my-4" />
               <div className="flex justify-between">

@@ -7,12 +7,12 @@ import { Loader } from "@/assets/icons";
 
 export default function ProductDetails() {
   const params = useParams();
-  console.log("router", params.id);
+
   const { data, isLoading } = useGetProductQuery(params.id, {
     refetchOnMountOrArgChange: true
   });
 
-  console.log(data, "data");
+ 
   return (
     <div>
       {isLoading ? (
