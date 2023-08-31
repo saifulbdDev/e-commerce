@@ -3,8 +3,18 @@ export const productApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: (data) => {
+        let url = "products";
+
+        if (data?.category) {
+          url += `/category/${data.category}`;
+        }
+
+        if (data?.sort) {
+          url += `?sort=${data.sort}`;
+        }
+
         return {
-          url: `${data ? `products/category/${data}` : "products"}`,
+          url: url,
           method: "GET"
         };
       }
@@ -24,7 +34,7 @@ export const productApi = apiSlice.injectEndpoints({
           method: "GET"
         };
       }
-    }),   
+    }),
     getUsers: builder.query({
       query: () => {
         return {

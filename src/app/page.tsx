@@ -11,9 +11,13 @@ import React, { useState } from "react";
 
 export default function Home() {
   const [category, setCategory] = useState("");
-  const { data, isLoading } = useGetProductsQuery(category, {
-    refetchOnMountOrArgChange: true
-  });
+  const [sort, setSort] = useState("");
+  const { data, isLoading } = useGetProductsQuery(
+    { category, sort },
+    {
+      refetchOnMountOrArgChange: true
+    }
+  );
   const { data: categories, isLoading: categoriesLoading } =
     useGetAllCategoriesQuery({
       refetchOnMountOrArgChange: false
@@ -35,22 +39,36 @@ export default function Home() {
             </div>
 
             <div className=" justify-end  flex items-center space-x-2 ">
-              <span className="ml-4 text-black text-lg">
-                Filter by Category :
-              </span>
-              <select
-                id="category"
-                name="category"
-                onChange={(evt) => setCategory(evt.target.value)}
-                className="block  rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                {categories?.map((item: string) => {
-                  return (
-                    <option value={item} key={item}>
-                      {item}
-                    </option>
-                  );
-                })}
-              </select>
+              <div className=" flex items-center space-x-2 ">
+                <span className="ml-4 text-black text-lg">
+                  Filter by Category :
+                </span>
+                <select
+                  id="category"
+                  name="category"
+                  onChange={(evt) => setCategory(evt.target.value)}
+                  className="block  rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  {categories?.map((item: string) => {
+                    return (
+                      <option value={item} key={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className=" flex items-center space-x-2 ">
+                {" "}
+                <span className="ml-4 text-black text-lg">Sort :</span>
+                <select
+                  id="category"
+                  name="category"
+                  onChange={(evt) => setSort(evt.target.value)}
+                  className="block  rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <option value="asc">asc</option>;
+                  <option value="desc">desc</option>;
+                </select>
+              </div>
             </div>
           </div>
           <div className="mt-6 grid grid-cols-1 gap-x-3  sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
