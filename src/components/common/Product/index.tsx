@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { ProductState } from "@/types/product.type";
 import {
-  addCart, removeCart, adjustQuantity
+  addCart, 
  
 } from "@/features/products/productsSlice";
 interface ProductPageProps {
